@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+   
+    <title>Menu</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+    <style>
+        /* Import Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color:  #f3dfa9;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px 25px;  
+            background-color:  #d8bc69;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1000;
+            border-radius: 0 0 50px 50px;
+            transition: background-color 0.3s ease;
+        }
+
+
+        header:hover{
+            background-color:  #d3b161;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: nowrap;
+        }
+
+        .social-links, .icons {
+           
+          display: flex;
+            gap: 15px;
+        }
+
+        .social-links a, .icons a {
+            color: #333;
+            font-size: 20px;
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover, .icons a:hover {
+            color: #dfac3e;
+            transform: translateY(-3px);
+        }
+
+        .logo img {
+            height: 85px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.1);
+        }
+
+        .nav-links {
+            display: flex;
+            white-space: nowrap;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #dfac3e;
+            transform: translateY(-3px);
+        }
+
+        /* Burger Menu Styles */
+        .toggle {
+            display: none; /* Visible by default */
+            position: absolute;
+            height: 30px;
+            width: 30px;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            z-index: 3000;
+            cursor: pointer;
+            border-radius: 2px;
+            box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+            opacity: 1; /* Fully visible */
+            visibility: visible; /* Visible */
+            transition: opacity 0.5s ease, visibility 0.5s ease; /* Smooth transition */
+        }
+
+        /* Hide the toggle button when the menu is open */
+        input:checked ~ .toggle {
+            opacity: 0; /* Fade out */
+            visibility: hidden; /* Hide */
+        }
+
+        .toggle .common {
+            position: absolute;
+            height: 2px;
+            width: 20px;
+            background-color: #474343;
+            border-radius: 50px;
+            transition: 0.3s ease;
+        }
+
+        .toggle .top_line {
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .toggle .middle_line {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .toggle .bottom_line {
+            top: 70%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        input:checked ~ .toggle .top_line {
+            left: 2px;
+            top: 14px;
+            width: 25px;
+            transform: rotate(45deg);
+        }
+
+        input:checked ~ .toggle .bottom_line {
+            left: 2px;
+            top: 14px;
+            width: 25px;
+            transform: rotate(-45deg);
+        }
+
+        input:checked ~ .toggle .middle_line {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        /* Slide Menu Styles */
+        .slide {
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            background-color: #fff;
+            transition: 0.5s ease;
+            transform: translateX(250px);
+            right: 0;
+            top: 0;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+            z-index: 2500;
+        }
+
+        input:checked ~ .slide {
+            transform: translateX(0);
+        }
+
+        .slide h1 {
+            color: #333;
+            font-weight: 800;
+            text-align: center;
+            padding: 20px 0;
+            background-color: #dfac3e;
+            margin-bottom: 10px;
+        }
+
+        .slide ul {
+            padding: 10px;
+        }
+
+        .slide ul li {
+            list-style: none;
+            margin-bottom: 10px;
+        }
+
+        .slide ul li a {
+            color: #333;
+            font-weight: 500;
+            padding: 12px 15px;
+            display: block;
+            text-transform: capitalize;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .slide ul li a i {
+            width: 30px;
+            text-align: center;
+            margin-right: 10px;
+        }
+
+        .slide ul li a:hover {
+            color: #fff;
+            background-color: #dfac3e;
+        }
+
+        /* Close Button Styles */
+        .close-btn {
+            position: absolute;
+            top: 25px;        
+            background-color: transparent;
+            border: none;
+            color: #333;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 5px 10px;
+            transition: color 0.3s ease;
+            right:25px;
+            cursor: pointer;
+            border-radius: 4px;
+            background-color: #dabe8b;
+            box-shadow: 0.5px 0.5px 2px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .close-btn:hover {
+            color: #9e7722;
+        }
+
+        /* Overlay for Menu */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+        }
+
+        input:checked ~ .overlay {
+            display: block;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-content {
+                width: 100%;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .logo {
+                text-align: center;
+            }
+
+            .toggle {
+                display: block;
+            }
+
+            .icons {
+                position: relative;
+                padding-right: 60px;
+            }
+
+            .nonvisible {
+                display: none;
+            }
+
+            .hidden {
+                display: none;
+            }
+        }
+
+        input {
+            display: none;
+            visibility: hidden;
+            -webkit-appearance: none;
+        }
+
+        @media(max-width:370px){
+            header{
+                position: absolute;
+            }
+            .slide{
+                height: 100%;
+            }
+        }
+
+
+        
+        .toggle:hover{
+            background-color: #c2a93b;
+        }
+
+        @media (max-width: 806px) {
+    .header-content {
+        flex-direction:row ;
+        align-items: center; /* Center align items */
+        gap: 15px; /* Add some spacing between stacked items */
+        
+    }}
+      
+    </style>
+</head>
+<body>
+    <div class="absol">
+        <header>
+            <!-- Header Content -->
+            <div class="header-content">
+                <!-- Social Media Links -->
+                <div class="social-links">
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+                <!-- Logo -->
+                <div class="logo">
+                    <img src="img/smak.png" alt="Logo">
+                </div>
+                <!-- Icons -->
+                <div class="icons">
+                    <a href="#"><i class="far fa-user"></i></a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                    <a href="#"><i class="far fa-heart"></i></a>
+                    <div class="nonvisible">
+                        <ul class="nav-links">
+                            <li><a href="#">Головна</a></li>
+                            <li><a href="#">Каталог</a></li>
+                            <li><a href="#">Про нас</a></li>
+                            <li><a href="#">Контакти</a></li>
+                           <style>.nav-links {
+                            list-style: none;
+                            display: flex;
+                            gap: 0px;
+                            align-items: center;
+                            margin: 0 0px;
+                            font-size: 1.2em;
+                        }
+
+                        .nav-links a {
+                            color: #4b3621;
+                            font-size: 1em;
+                            padding: 10px 15px;
+                            border-radius: 5px;
+                            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+                            text-decoration: none;
+                        }
+
+                        .nav-links a:hover {
+                            background-color: #dabe8b;
+                            transform: scale(1.1);
+                        }</style>
+                          </ul>
+                    </div>
+                    <!-- Burger Menu -->
+                    <label for="toggle">
+                        <input type="checkbox" id="toggle">
+                        <div class="toggle">
+                            <span class="top_line common"></span>
+                            <span class="middle_line common"></span>
+                            <span class="bottom_line common"></span>
+                        </div>
+                        <div class="slide">
+                            <h1>Menu</h1>
+                            <!-- Close Button -->
+                            <button id="closeMenu" class="close-btn">
+                                <i class="fas fa-times"></i> 
+                            </button>
+                            <ul>
+                                <li><a href="#"><i class="fa fa-tv"></i> Dashboard</a></li>
+                                <li><a href="#"><i class="far fa-user"></i> Профіль</a></li>
+                                <li><a href="#"><i class="fa-brands fa-gripfire"></i> Новинки</a></li>
+                                <li><a href="#"><i class="far fa-comments"></i> Повідомлення</a></li>
+                                <li><a href="#"><i class="far fa-folder"></i> Files</a></li>
+                                <li><a href="#"><i class="far fa-address-book"></i> Contacts</a></li>
+                                <li><a href="#"><i class="far fa-heart"></i> Favorites</a></li>
+                                <li><a href="#"><i class="fa fa-cogs"></i> Settings</a></li>
+                            </ul>
+                        </div>
+                        <!-- Overlay -->
+                        <div class="overlay"></div>
+                    </label>
+                </div>
+            </div>
+        </header>
+    </div>
+
+
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>Вітаємо на нашому сайті!</h1>         
+            <p>Тут ви знайдете всі важливі оновлення та новини.</p>
+            <a href="#" class="hero-button">Дізнатися більше</a> <!-- Кнопка -->
+        </div>
+    </div>
+
+    <iframe src="newtest.html" width="100%" height="600px" frameborder="0"></iframe>
+
+    <iframe src="footer.html" width="100%" height="600px" frameborder="0"></iframe>
+    <script>
+        document.getElementById('toggle').addEventListener('change', function() {
+            var toggleButton = document.querySelector('.toggle');
+            if (this.checked) {
+                toggleButton.classList.remove('visible');
+            } else {
+                toggleButton.classList.add('visible');
+            }
+        });
+
+        // Close menu when close button is clicked
+        document.getElementById('closeMenu').addEventListener('click', function() {
+            document.getElementById('toggle').checked = false;
+            document.querySelector('.toggle').classList.add('visible');
+        });
+    </script>
+
+</body>
+</html>

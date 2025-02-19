@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", sans-serif;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background:#f3dfa9;
+        }
+
+        .card-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card-item {
+            margin-bottom: 20px;
+        }
+
+        .card-link {
+           user-select: none;
+            display: block;
+            background:  #ecda75;
+            padding: 18px;
+            border-radius: 12px;
+            text-decoration: none;
+            border: 2px solid transparent;
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+            transition: 0.2s ease;
+        }
+
+        .card-link :hover {
+            border-color: #5372F0;
+        }
+
+        .card-link:active{
+            cursor: grabbing;
+        }
+
+        .card-image {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .badge {
+            color: rgb(47, 96, 231);
+            padding: 8px 16px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin: 16px 0 18px;
+            background: #ffffff;
+            width: fit-content;
+            border-radius: 50px;
+        }
+
+        .card-button {
+          height: 35px;
+          width: 35px;
+          color: #5372F0;
+          border-radius: 50%;
+          margin: 30px 0 5px;
+          background: none;
+          cursor: pointer;
+          border: 2px solid #5372F0;
+          transform: rotate(-45deg);
+          transition: 0.4s ease;
+        }
+
+        .card-button:hover {
+            background: #0056b3;
+        }
+
+        .card-title{
+            font-size: 1.19rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .card-list .card-link:hover .card-button {
+            color: #ffffff;
+            background: #5372F0;
+        }
+
+        .card-list .card-link .badge.designer {
+            color: #ff00bf;
+            background: #fffbee;
+        }
+
+        .card-list .card-link .badge.marketer {
+            color: #d68f3e;
+            background: #fff3cd;
+        }
+
+        .card-list .card-link .badge.gamer {
+            color: #135c04;
+            background: #fff3cd;
+        }
+
+        .card-list .card-link .badge.editor {
+            color: #856404;
+            background: #fff3cd;
+        }
+
+        .card-wrapper {
+            max-width: 1100px;
+            margin: 0 60px 35px;
+            padding: 20px 10px;
+            overflow: hidden;
+        }
+
+        .card-wrapper .swiper-pagination-bullet {
+            height: 13px;
+            width: 13px;
+            opacity: 0.5;
+            background: #5372F0;
+        }
+
+        .card-wrapper .swiper-pagination-bullet-active {
+            opacity : 1;
+        }
+
+        .card-wrapper .swiper-slide-button {
+            color: #5372F0;
+            margin-top: -35px;
+        }
+
+        @media screen and (max-width: 768px){
+            .card-wrapper {
+                margin: 0 10px 25px;
+            }
+
+            .card-wrapper .swiper-slide-button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container swiper">
+        <div class="card-wrapper">
+            <ul class="card-list swiper-wrapper">
+                <li class="card-item swiper-slide">
+                    <a href="#" class="card-link">
+                        <img src="img/sausages.jpg" alt="Sausages" class="card-image">
+                        <p class="badge designer">Development</p>
+                        <h2 class="card-title">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        </h2>
+                        <button class="card-button material-symbols-outlined">
+                            chevron_right
+                        </button>
+                    </a>
+                </li>
+                <li class="card-item swiper-slide">
+                    <a href="#" class="card-link">
+                        <img src="img/sausages.jpg" alt="Sausages" class="card-image">
+                        <p class="badge developer">Development</p>
+                        <h2 class="card-title">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        </h2>
+                        <button class="card-button material-symbols-outlined">
+                            chevron_right
+                        </button>
+                    </a>
+                </li> <li class="card-item swiper-slide">
+                    <a href="#" class="card-link">
+                        <img src="img/sausages.jpg" alt="Sausages" class="card-image">
+                        <p class="badge marketer">Development</p>
+                        <h2 class="card-title">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        </h2>
+                        <button class="card-button material-symbols-outlined">
+                            chevron_right
+                        </button>
+                    </a>
+                </li> <li class="card-item swiper-slide">
+                    <a href="#" class="card-link">
+                        <img src="img/sausages.jpg" alt="Sausages" class="card-image">
+                        <p class="badge gamer">Development</p>
+                        <h2 class="card-title">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        </h2>
+                        <button class="card-button material-symbols-outlined">
+                            chevron_right
+                        </button>
+                    </a>
+                </li> <li class="card-item swiper-slide">
+                    <a href="#" class="card-link">
+                        <img src="img/sausages.jpg" alt="Sausages" class="card-image">
+                        <p class="badge editor">Development</p>
+                        <h2 class="card-title">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        </h2>
+                        <button class="card-button material-symbols-outlined">
+                            chevron_right
+                        </button>
+                    </a>
+                </li>
+            </ul>    
+
+            <div class="swiper-pagination"></div>
+            <div class="swiper-slide-button swiper-button-prev"></div>
+            <div class="swiper-slide-button swiper-button-next"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.card-wrapper', {
+            loop: true,
+            spaceBetween: 30,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                dynamicBullets: true
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1
+                },
+                768: {
+                    slidesPerView: 2
+                },
+                1024: {
+                    slidesPerView: 3
+                },
+            }
+        });
+
+        const swiperContainer = document.querySelector('.card-wrapper');
+
+        swiperContainer.addEventListener('mouseenter', () => {
+            swiper.autoplay.stop();
+        });
+
+        swiperContainer.addEventListener('mouseleave', () => {
+            swiper.autoplay.start();
+        });
+    </script>
+</body>
+</html>
