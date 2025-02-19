@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Карусель на 5 элементов</title>
+    <style>
+      /* Контейнер карусели */
+      .carousel-container {
+        width: 30vw; /* Ширина области видимости карусели */
+        margin: 2.5vw auto; /* Отцентрировать по горизонтали */
+        overflow: hidden; /* Прятать элементы, выходящие за границы */
+        position: relative; /* Для позиционирования стрелок */
+      }
+
+      /* Внутренний трек для прокрутки */
+      .carousel-track {
+  display: flex;
+  transition: transform 0.3s;
+  cursor: grab;
+  justify-content: space-between; /* Равномерное распределение */
+}
+
+.carousel-item {
+  flex: 0 0 auto; /* Фиксированная ширина элементов */
+  width: calc((100% - 4vw) / 3); /* 3 элемента с отступами */
+  height: 10vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 1.2vw;
+  font-weight: bold;
+  user-select: none;
+}
+
+
+      /* Кнопки влево и вправо */
+      .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #ffffff;
+        border: none;
+        padding: .5vw;
+        cursor: pointer;
+        z-index: 10;
+        font-size: .9vw;
+      }
+      .arrow.left {
+        left: 0;
+      }
+      .arrow.right {
+        right: 0;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="carousel-container" id="carousel">
+      <button class="arrow left" id="prevBtn">&#10094;</button>
+
+      <div class="carousel-track" id="track">
+        <div class="carousel-item" style="background-color: red">1</div>
+        <div class="carousel-item" style="background-color: green">2</div>
+        <div class="carousel-item" style="background-color: blue">3</div>
+        <div class="carousel-item" style="background-color: orange">4</div>
+        <div class="carousel-item" style="background-color: purple">5</div>
+      </div>
+
+      <button class="arrow right" id="nextBtn">&#10095;</button>
+    </div>
+
+    <script>
+      const track = document.getElementById("track");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+
+      let currentIndex = 0;
+      const totalItems = 5; // Всего 5 элементов
+
+      // Определяем количество видимых элементов на основе ширины экрана
+      let visibleItems = 3; // По умолчанию показываем 3 элемента
+      let itemWidth = 210; // Ширина элемента (с маргинами)
+
+      function setVisibleItems() {
+        
+        itemWidth = document.querySelector('.carousel-item').getBoundingClientRect().width
+        if (window.innerWidth <= 320) {
+          visibleItems = 1; // На экранах меньше 320px показываем 1 элемент
+          //itemWidth = 100; // Ширина одного элемента на маленьких экранах
+        } else if (window.innerWidth <= 768) {
+          visibleItems = 2; // На экранах меньше 768px показываем 2 элемента
+          //itemWidth = 200; // Ширина одного элемента на экранах среднего размера
+        } else {
+          visibleItems = 3; // На экранах больше 768px показываем 3 элемента
+          //itemWidth = 210; // Ширина элемента для 3 слайдов
+        }
+      }
+
+      window.addEventListener('resize', setVisibleItems); // Обновляем при изменении размера окна
+      setVisibleItems(); // Инициализация при первой загрузке
+      let maxIndex = 0; // Переменная для хранения предела прокрутки
+
+function setVisibleItems() {
+  itemWidth = document.querySelector(".carousel-item").getBoundingClientRect().width;
+  
+  if (window.innerWidth <= 320) {
+    visibleItems = 1;
+  } else if (window.innerWidth <= 768) {
+    visibleItems = 2;
+  } else {
+    visibleItems = 3;
+  }
+
+  maxIndex = Math.max(totalItems - visibleItems, 0); // Ограничиваем индекс
+  currentIndex = Math.min(currentIndex, maxIndex); // Фиксим положение, если ушли дальше
+  updateCarousel();
+}
+
+window.addEventListener("resize", setVisibleItems);
+setVisibleItems(); // Запускаем при загрузке
+
+
+      // Функция для обновления смещения карусели
+      function updateCarousel() {
+        track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+      }
+
+      // Обработчик кнопки "Назад"
+      prevBtn.addEventListener("click", () => {
+        currentIndex = Math.max(currentIndex - 1, 0);
+        updateCarousel();
+      });
+
+      // Обработчик кнопки "Вперёд"
+      nextBtn.addEventListener("click", () => {
+        currentIndex = Math.min(currentIndex + 1, maxIndex);
+        updateCarousel();
+      });
+
+      // --- Поддержка "свайпа" мышкой (drag) ---
+      let startX = 0; // Координата начала "захвата"
+      let isDragging = false;
+
+      // Начало захвата
+      track.addEventListener("mousedown", (e) => {
+        isDragging = true;
+        startX = e.pageX;
+        track.style.cursor = "grabbing";
+      });
+
+      // Окончание захвата (на всем документе, чтобы точно поймать отпускание)
+      document.addEventListener("mouseup", () => {
+        isDragging = false;
+        track.style.cursor = "grab";
+      });
+
+      // Движение мыши
+      track.addEventListener("mousemove", (e) => {
+  if (!isDragging) return;
+
+  let walk = e.pageX - startX;
+
+  if (Math.abs(walk) > 50) {
+    if (walk < 0) {
+      currentIndex = Math.min(currentIndex + 1, maxIndex);
+    } else {
+      currentIndex = Math.max(currentIndex - 1, 0);
+    }
+    updateCarousel();
+    isDragging = false; // Завершаем свайп, чтобы не было повторных срабатываний
+  }
+});
+
+
+      // Автоматическое прокручивание
+      let autoScrollInterval;
+
+      function startAutoScroll() {
+        autoScrollInterval = setInterval(() => {
+          if (currentIndex < maxIndex) {
+            currentIndex += 1;  // Прокручиваем вперед
+          } else {
+            currentIndex = 0;  // Если дошли до последнего элемента, начинаем сначала
+          }
+          updateCarousel();
+        }, 5000); // Прокручивать каждые 5 секунд
+      }
+
+      function stopAutoScroll() {
+        clearInterval(autoScrollInterval);
+      }
+
+      // Запуск авто-прокрутки при загрузке
+      startAutoScroll();
+
+      // Остановка прокрутки при наведении
+      track.addEventListener("mouseenter", stopAutoScroll);
+
+      // Возобновление прокрутки при уходе мыши
+      track.addEventListener("mouseleave", startAutoScroll);
+    </script>
+  </body>
+</html>

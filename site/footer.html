@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Футер сайту</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            min-height: 100vh;
+            background:  #f3dfa9;
+        }
+
+        footer {
+            position: relative;
+            width: 100%;
+            background: #d3b161;
+            min-height: 100px;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* Виправлено */
+        }
+
+        footer .social-icon, 
+        footer .menu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 0;
+            flex-wrap: wrap;
+        }
+
+        footer .social-icon li, 
+        footer .menu li {
+            list-style: none;
+        }
+
+        footer .social-icon li a {
+            font-size: 2em;
+            color: #fff;
+            margin: 0 10px;
+            display: inline-block;
+            transition: 0.5s;
+        }
+
+        footer .social-icon li a:hover {
+            transform: translateY(-10px);
+        }
+
+        footer .menu li a {
+            font-size: 1.2em;
+            color: #fff;
+            margin: 0 10px;
+            display: inline-block;
+            transition: 0.5s;
+            text-decoration: none;
+            opacity: 0.75;
+        }
+
+        footer .menu li a:hover {
+            opacity: 1;
+        }
+
+        footer p {
+            color: #fff;
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+footer .wave
+        {
+            position: absolute;
+            top: -100px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background:url(img/wave.png);
+            background-size: 1000px 100px;
+        }
+
+
+        footer .wave#wave1
+        {
+           z-index: 1000;
+           opacity: 1;
+           bottom: 0;
+           animation: animateWave 4s linear infinite;
+        }
+
+        footer .wave#wave2
+        {
+           z-index: 999;
+           opacity: 0.5;
+           bottom: 10px;
+           animation: animateWave_02 4s linear infinite;
+        }
+        footer .wave#wave3
+        {
+           z-index: 1000;
+           opacity: 0.2;
+           bottom: 15px;
+           animation: animateWave 3s linear infinite;
+        }
+
+        footer .wave#wave4
+        {
+           z-index: 999;
+           opacity: 0.7;
+           bottom: 20px;
+           animation: animateWave_02 3s linear infinite;
+        }
+        @keyframes animateWave {
+
+            0%
+            {
+                background-position-x: 1000px ;
+            }
+            100%
+            {
+                background-position-x: 0px ;
+            } 
+        }
+
+        @keyframes animateWave_02 {
+
+            0%
+            {
+                  background-position-x: 0px ;
+            }
+            100%
+            {
+                    background-position-x: 1000px ;
+            }
+
+
+}
+.map-container {
+    width: 100%;
+    max-width: 400px;
+    height: 200px;
+    margin: 10px auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 10px 10px  rgba(0, 0, 0, 0.2);
+}
+
+    
+    </style>
+</head>
+<body>
+    <footer>
+        <div class="waves">
+            <div class="wave" id="wave1"></div>
+            <div class="wave" id="wave2"></div>
+            <div class="wave" id="wave3"></div>
+            <div class="wave" id="wave4"></div>
+        </div>
+        <ul class="social-icon">
+            <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="tel:+123456789" title="Телефон"><i class="fa fa-phone"></i></a></li>
+        </ul>
+        <ul class="menu">
+            <li><a href="#">Головна</a></li> 
+            <li><a href="#">Про нас</a></li> 
+            <li><a href="#">Послуги</a></li> 
+            <li><a href="#">Команда</a></li>
+            <li><a href="#">Контакти</a></li>
+        </ul>
+        <div class="map-container">
+            <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10293.531794192471!2d23.99169338126145!3d49.83526164369782!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473add82277f413d%3A0x10ae65710848a2e6!2z0LLRg9C70LjRhtGPINCT0L7RgNGB0YzQutC-0ZcsIDExLCDQm9GM0LLRltCyLCDQm9GM0LLRltCy0YHRjNC60LAg0L7QsdC70LDRgdGC0YwsINCj0LrRgNCw0LnQvdCwLCA3OTAwMA!5e0!3m2!1sbg!2spl!4v1739735762471!5m2!1sbg!2spl"
+            width="100%" 
+            height="200" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        </div>
+        
+        
+        
+        <p>©2025 Домашній Смак | Всі права захищені</p>
+    </footer>
+</body>
+</html>

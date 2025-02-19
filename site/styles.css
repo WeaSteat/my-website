@@ -1,0 +1,244 @@
+/* Загальний стиль для секції */
+.hero {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Висота на весь екран */
+    background: linear-gradient(135deg, #d8bc69, #f7f1e1);
+    width: 100%; /* Задаємо 100% ширину */
+    overflow: hidden; /* Щоб зображення не виходило за межі контейнера */
+}
+
+/* Стиль для контейнера, що містить зображення */
+.hero .container {
+    position: relative;
+    width: 80%; /* Зменшуємо розмір зображення */
+    height: 80%; /* Зменшуємо висоту контейнера */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Запобігає виходу зображення за межі контейнера */
+    margin-top: 50px; /* Відступ від верхньої частини */
+    border-radius: 20px;
+}
+
+/* Стиль для зображення */
+.hero img {
+    width: 100%; /* Зображення розтягується на всю ширину контейнера */
+    height: 100%; /* Зображення розтягується на всю висоту контейнера */
+    object-fit: cover; /* Заповнює контейнер без спотворень */
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 20px; /* Закруглені краї за замовчуванням */
+    transition: transform 0.3s ease-in-out; /* Додаємо плавну анімацію для масштабування */
+    overflow: hidden;
+}
+
+/* Ефект збільшення при наведенні */
+.hero img:hover {
+    transform: scale(0.05); /* Збільшуємо зображення на 5% */
+    border-radius: 20px;
+}
+
+/* Стиль для текстового накладу */
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Центруємо текст */
+    text-align: center;
+    color: #fff;
+    z-index: 1; /* Забезпечує, що текст знаходиться поверх зображення */
+}
+
+/* Стиль для контейнера з кнопкою */
+.button-container {
+    position: absolute;
+    top: 60%; /* Трохи нижче центру для кнопки */
+    left: 50%;
+    transform: translateX(-50%); /* Центруємо по горизонталі */
+    z-index: 2; /* Забезпечує, що кнопка знаходиться поверх зображення */
+}
+
+/* Стиль для кнопки */
+.catalog-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ff6347; /* Приклад кольору кнопки */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.catalog-button:hover {
+    background-color: #e55347; /* Приклад ефекту при наведенні */
+}
+
+/* Медіа-запити для мобільних пристроїв */
+@media (max-width: 768px) {
+    .hero .container {
+        width: 95%; /* Збільшуємо ширину контейнера на мобільних пристроях */
+        height: 70%; /* Зменшуємо висоту контейнера */
+        margin-top: 20px; /* Зменшуємо відступ від верхньої частини */
+    }
+
+    .catalog-button {
+        padding: 8px 16px; /* Зменшуємо розмір кнопки */
+        font-size: 14px; /* Зменшуємо шрифт */
+    }
+}
+
+/* Медіа-запити для екранів 1440px і вище */
+@media (min-width: 1440px) {
+    .catalog-button {
+        padding: 12px 24px; /* Збільшуємо розмір кнопки */
+        font-size: 18px; /* Збільшуємо шрифт */
+    }
+
+    .text-overlay {
+        font-size: 24px; /* Збільшуємо розмір тексту */
+    }
+}
+
+/* Медіа-запити для екранів 425px і менше */
+@media (max-width: 425px) {
+    .hero .container {
+        width: 100%; /* Збільшуємо ширину контейнера */
+        height: 400px; /* Встановлюємо висоту контейнера */
+        margin-top: -200px; /* Зменшуємо відступ від верхньої частини */
+    }
+
+    .hero img {
+        width: 400px; /* Встановлюємо ширину зображення */
+        height: 400px; /* Встановлюємо висоту зображення */
+        object-fit: cover; /* Заповнює контейнер без спотворень */
+    }
+
+    .button-container {
+        top: 50%; /* Переміщуємо кнопку нижче */
+    }
+}
+
+/* Загальні стилі для body */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Стилі для секції зображення */
+.hero-section {
+    position: relative;
+    background-image: url('img/sausages.jpg'); /* Заміни на своє зображення */
+    background-size: cover;
+    background-position: center;
+    height: 80vh; /* Зменшено висоту */
+    margin: 20px; /* Відступи від країв екрану */
+    border-radius: 20px; /* Скруглення по краях */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    overflow: hidden; /* Прибирає зайве за межами скруглених кутів */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); /* Тінь для секції */
+    transition: transform 0.3s ease; /* Додаємо плавну анімацію для збільшення */
+ 
+    
+}
+.hero-section img{
+    width: 20vh;
+}
+.hero-section:hover {
+    transform: scale(1.005); /* Збільшуємо зображення при наведенні */
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4); /* Напівпрозорий чорний фон для темнішого ефекту */
+    z-index: 1;
+    filter: blur(8px); /* Розмиття */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2; /* Виводить текст на передній план */
+    padding: 20px; /* Відступи від країв секції */
+    max-width: 90%; /* Обмежує ширину тексту */
+    margin: 0 auto; /* Центрує текст */
+}
+
+/* Стилі для тексту */
+.hero-content h1 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.hero-content p {
+    font-size: 1.25rem;
+    margin: 10px 0;
+}
+
+/* Стилі для кнопки */
+.hero-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    background-color: #ff6600;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+    z-index: 2; /* Переконуємося, що кнопка не схована за фоном */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Тінь для кнопки */
+}
+
+.hero-button:hover {
+    background-color: #cc5200;
+}
+
+/* Адаптивність для мобільних пристроїв */
+@media screen and (max-width: 768px) {
+    .hero-section {
+        height: 60vh; /* Зменшена висота на середніх екранах */
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .hero-button {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero-section {
+        height: 50vh; /* Зменшена висота на малих екранах */
+    }
+
+    .hero-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+
+    .hero-button {
+        font-size: 0.9rem;
+    }
+}
